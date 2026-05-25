@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div class="consola">
+    <div class="pantalla" id="pantalla">
+        C:\Users\fanig>...Esperando Orden
+    </div>
+    <button onclick="ejecutarCiclo()">
+        Calcular Punto Fijo
+    </button>
+</div>
+<script>
+function ejecutarCiclo() {
+    let x = 0.5; // valor inicial
+    let tolerancia = 0.0001;
+    let limite = 10;
+    let logs = "Iniciando aproximaciones sucesivas...<br>";
+    logs += "Valor inicial: " + x + "<br><br>";
+
+    for (let i = 0; i < limite; i++) {
+
+        // FUNCIÓN g(x) = cos(x)
+        let xNuevo = Math.cos(x);
+
+        logs += "Iteración " + (i + 1) + ": " + xNuevo + "<br>";
+
+        // Verificamos si ya llegamos al punto fijo
+        if (Math.abs(xNuevo - x) < tolerancia) {
+            logs += "<br>✅ PUNTO FIJO ENCONTRADO: " + xNuevo;
+            document.getElementById('pantalla').innerHTML = logs;
+            return;
+        }
+
+        x = xNuevo;
+    }
+    logs += "<br>⚠️ No se alcanzó el punto fijo en el límite de iteraciones";
+    document.getElementById('pantalla').innerHTML = logs;
+}
+</script>
+</body>
+</html>

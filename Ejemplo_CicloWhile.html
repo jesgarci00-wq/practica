@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div class="consola">
+    <div class="pantalla" id="pantalla">
+        C:\Users\fanig>...Esperando Orden
+    </div>
+    <button onclick="ejecutarCiclo()">
+        Conectar a la base de datos
+    </button>
+</div>
+
+<script>
+function ejecutarCiclo() {
+    let estadoActual = "DESCONECTADO";
+    let numeroIntentos = 0;
+    let limite = 5;
+    let logs = "Iniciando conexión....<br>";
+
+    while (estadoActual == "DESCONECTADO" && numeroIntentos < limite){
+        numeroIntentos++;
+        logs += "Intento de conexión número: " + numeroIntentos + "<br>";
+
+        let numeroAleatorio = Math.floor(Math.random() * 10) + 1;
+
+        if (numeroAleatorio > 7){
+            estadoActual = "CONECTADO";
+            logs += "CONEXIÓN EXITOSA<br>";
+        } else {
+            logs += "CONEXIÓN FALLIDA (Servidor fuera de línea)<br>";
+        }
+    }
+
+    if(estadoActual == "CONECTADO"){
+        logs += "BASE DE DATOS LISTA";
+    } else {
+        logs += "ERROR: TIEMPO DE ESPERA AGOTADO";
+    }
+
+    document.getElementById('pantalla').innerHTML = logs;
+}
+</script>
+
+</body>
+</html>
